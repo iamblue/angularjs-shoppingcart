@@ -54,9 +54,9 @@ function showcase($scope,Data){
    // console.log($scope);
     if($scope.cartdatas[no].del == 0){
       $scope.caculatecount = $scope.caculatecount-$scope.cartdatas[no].thistotalprice;
-      $scope.cartdatas[no].del = 1
+      $scope.cartdatas[no].del = 1;
     }else{
-      $scope.cartdatas[no].del = 0
+      $scope.cartdatas[no].del = 0;
       $scope.caculatecount = $scope.caculatecount+$scope.cartdatas[no].thistotalprice;
     }
   }
@@ -77,7 +77,7 @@ function showcase($scope,Data){
 
 cartshopping.directive("delete",function(){
   return function (scope,element){
-    console.log(element);
+    //console.log(element);
     element.bind('mousedown',function(){
       console.log(scope.deletethis);
       if(element.hasClass('active')){

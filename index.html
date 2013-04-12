@@ -16,13 +16,13 @@
 					          <th>刪除</th>
 					          <th>商品圖樣</th>
 					          <th>商品名稱</th>
-					          <th>售價</th>
-					          <th>數量</th>
-					          <th>總價</th>
+					          <th><a ng-click="cartsort = 'singleprice';reverse=!reverse">售價（可點選排序）</a></th>
+					          <th><a ng-click="cartsort = 'numbers';reverse=!reverse">數量（可點選排序）</a></th>
+					          <th><a ng-click="cartsort = 'thistotalprice';reverse=!reverse">總價（可點選排序）</a></th>
 					      </tr>
 					  </thead>
 					  <tbody>
-					      <tr ng-repeat="data in cartdatas">
+					      <tr ng-repeat="data in cartdatas | orderBy:cartsort:reverse">
 					          <td><input type="checkbox" ng-click="deletethis(data.thistotalprice,data.num)" delete></td>
 					          <td>這裡放圖片</td>
 					          <td>{{data.productname}}</td>
