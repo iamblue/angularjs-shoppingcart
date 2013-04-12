@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='./css/bootstrap.css' />
+		<script type="text/javascript" src="./js/angular.min.js"></script>
+		<script type="text/javascript" src="./js/angular-cart.js"></script>		
+	</head>	
+	<body>
+		<div class="wrapper" ng-app="cartshopping">
+			<h2>購物車清單</h2>
+			<div class="widget">
+				<div class="table-overflow"  ng-controller="showcase">
+					<table class="table table-bordered table-checks">
+					  <thead>
+					      <tr>
+					          <th>刪除</th>
+					          <th>商品圖樣</th>
+					          <th>商品名稱</th>
+					          <th>售價</th>
+					          <th>數量</th>
+					          <th>總價</th>
+					      </tr>
+					  </thead>
+					  <tbody>
+					      <tr ng-repeat="data in cartdatas">
+					          <td><input type="checkbox" ng-click="deletethis(data.thistotalprice,data.num)"></td>
+					          <td>這裡放圖片</td>
+					          <td>{{data.productname}}</td>
+					          <td>{{data.singleprice}}</td>
+					          <td><input type="text" name="regular" class="span12" ng-model="data.numbers" ng-change="countthis(data.numbers,data.singleprice,data.num)"></td>
+					          <td>{{data.thistotalprice}}</td>
+					      </tr>
+					  </tbody>
+
+					</table>
+					<p>總價：{{caculatecount}}</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
