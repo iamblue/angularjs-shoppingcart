@@ -12,21 +12,33 @@ var data = [{
     productname:'娃娃車',
     singleprice:400,
     thistotalprice:400,
-    numbers:1
+    numbers:1,
+    del:0
   },{
     num:1,
     productname:'嘴砲車',
     singleprice:799,
     thistotalprice:799,
-    numbers:1
+    numbers:1,
+    del:0
+
   },{
     num:2,
     productname:'救護車',
     singleprice:799,
     thistotalprice:799,
-    numbers:1
+    numbers:1,
+    del:0
   }
   ];
+//計算初始總價
+  var z = 0,
+    totalprice =0;
+  for (z; z<data.length;z++){
+    totalprice = data[z].thistotalprice+totalprice
+  }
+//計算初始總價 end
+
 
 var cartshopping = angular.module('cartshopping', []);
 
@@ -39,8 +51,14 @@ function showcase($scope,Data){
   $scope.cartdatas = Data;
   
   $scope.deletethis = function (total,no){
-
-    $scope.caculatecount = $scope.caculatecount-$scope.cartdatas[no].thistotalprice;
+   // console.log($scope);
+    if($scope.cartdatas[no].del == 0){
+      $scope.caculatecount = $scope.caculatecount-$scope.cartdatas[no].thistotalprice;
+      $scope.cartdatas[no].del = 1
+    }else{
+      $scope.cartdatas[no].del = 0
+      $scope.caculatecount = $scope.caculatecount+$scope.cartdatas[no].thistotalprice;
+    }
   }
   $scope.countthis = function (nums,price,no){
     $scope.this.cartdatas[no].thistotalprice = nums*price
@@ -52,12 +70,26 @@ function showcase($scope,Data){
       $scope.caculatecount =a;
     }
   }
-  //計算初始總價
-  var z = 0; 
-  var totalprice =0;
-  for (z; z<Data.length;z++){
-    totalprice = Data[z].thistotalprice+totalprice
-  }
-  //計算初始總價 end
+  
   $scope.caculatecount = totalprice ;
 }
+
+
+cartshopping.directive("delete",function(){
+  return function (scope,element){
+    console.log(element);
+    element.bind('mousedown',function(){
+      console.log(scope.deletethis);
+      if(element.hasClass('active')){
+        element.removeClass('active');
+        var a = element.parent();
+        a.parent().removeClass('done-true');
+      }else{
+        element.addClass('active');
+        var a = element.parent();
+        a.parent().addClass('done-true');
+      }
+      console.log('oh,yo!');
+    })
+  }
+})
