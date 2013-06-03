@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='./css/bootstrap.css' />
+		<script type="text/javascript" src="./js/angular.min.js"></script>	
+	</head>
+	<body>
+		<div class="main" ng-app="main">
+			<input type="text" ng-model="output"/>
+			{{output}}
+			<div class="fr" ng-controller="mainController">
+			<input type="text" ng-model="output"/>
+			{{output}}
+			</div>
+			<div class="fr" ng-controller="mainController2">
+			<input type="text" ng-model="output"/>
+			{{output}}
+			</div>
+		</div>
+	<script>
+	var main = angular.module('main', []);
+	function mainController($scope){
+		// $scope.blabla
+	}
+	function mainController2($scope){
+
+	}
+	// $Scope 很好用，請善用相關的動詞
+	// http://docs.angularjs.org/api/ng.$rootScope.Scope
+
+	//注意一下，angularjs會重新compiler html 所以有些註解必須要注意出錯狀況,以及ajax的資料要用apply方式丟進angularjs的$scope中，否則無法作用
+
+	//特別是ajax後把<a ng-click="test()"></a>innerHtml中絕對無法作用
+	</script>
+	</body>
+</html>

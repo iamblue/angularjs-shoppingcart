@@ -1,10 +1,9 @@
 /**
- * shopping cart Module 0.1.0
- *
+ * shopping cart Example 0.0.1
+ * 
  * Description Blue Chen 2013.04 (@YouMeb inc)
  * Source:
  */
-
 
 //一開始抓取data請先滿足一下格式 
 var data = [{
@@ -39,17 +38,12 @@ var data = [{
   }
 //計算初始總價 end
 
-
 var cartshopping = angular.module('cartshopping', []);
-
 cartshopping.factory('Data',function(){
   return data
 })
-
-
 function showcase($scope,Data){
   $scope.cartdatas = Data;
-  
   $scope.deletethis = function (total,no){
    // console.log($scope);
     if($scope.cartdatas[no].del == 0){
@@ -70,16 +64,16 @@ function showcase($scope,Data){
       $scope.caculatecount =a;
     }
   }
-  
   $scope.caculatecount = totalprice ;
 }
 
-
+/*  directive 是angularJS 2-data-bindng 精隨 */
 cartshopping.directive("delete",function(){
-  return function (scope,element){
-    //console.log(element);
-    element.bind('mousedown',function(){
-      console.log(scope.deletethis);
+  return function (scope,element,attrs){
+    console.log(attrs);
+    console.log('yoyoy:'+scope.caculatecount);
+    element.bind('click',function(){
+      //console.log(scope.deletethis);
       if(element.hasClass('active')){
         element.removeClass('active');
         var a = element.parent();
@@ -92,4 +86,23 @@ cartshopping.directive("delete",function(){
       console.log('oh,yo!');
     })
   }
+  //另外一種寫法，比較不會跟$scope搞混
+  // return {
+  //   link: function($scope,element,attes){
+  //     console.log('yoyoy:'+$scope.caculatecount)
+  //     element.bind('click',function(){
+  //     //console.log(scope.deletethis);
+  //     if(element.hasClass('active')){
+  //       element.removeClass('active');
+  //       var a = element.parent();
+  //       a.parent().removeClass('done-true');
+  //     }else{
+  //       element.addClass('active');
+  //       var a = element.parent();
+  //       a.parent().addClass('done-true');
+  //     }
+  //     console.log('oh,yo!');
+  //   })
+  //   }
+  // }
 })

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel='stylesheet' href='./css/bootstrap.css' />
+		<script type="text/javascript" src="./js/angular.min.js"></script>	
+	</head>
+	<body>
+		<div class="main" ng-app="main">
+			<!-- <select>
+					<option selected>1123</option>
+			</select> -->
+<!-- 			<div class="selfr" ng-controller="selfr">
+			<select>
+				<option ng-repeat="a in aas" value="a.id">{{a.name}}</option>
+			</select>
+			</div> -->
+		</div>
+	<script>
+	// 請先看官網
+	// http://docs.angularjs.org/api/
+	// select 的相關
+	// http://jsbin.com/ufajev/52/edit
+	// 更好玩的用法請參考保哥
+	// http://blog.miniasp.com/post/2013/05/12/AngularJS-ng-module-select-ngOptions-usage-samples.aspx
+	var aa = [{name:'blue',id:0},{name:'ceaser',id:1}]
+	var main = angular.module('main', []);
+	main.factory('aa',function(){
+		return aa;
+	})
+	function selfr($scope,aa){
+		$scope.aas = aa;
+	}
+	</script>
+	<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+	</body>
+</html>
